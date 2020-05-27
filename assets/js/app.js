@@ -26,7 +26,7 @@ var chartGroup = svg.append("g")
 
 // step 3: import data from the data.csv file
 (async function(){
-    var url = "https://media.githubusercontent.com/media/the-Coding-Boot-Camp-at-UT/UT-MCC-DATA-PT-01-2020-U-C/master/homework-instructions/16-D3/Instructions/StarterCode/assets/data/data.csv?token=AOLBU32TB4MTD7EHYHCUOPK6ZRLWY"
+    var url = "https://raw.githubusercontent.com/yxc120330/D3-challenge/master/assets/data/data.csv"
     var newspaperdata = await d3.csv(url).catch(function(error){
         console.log(error);
     })
@@ -72,12 +72,14 @@ var circlesGroup = chartGroup.selectAll("circle")
 .attr("cy", d => yLinearScale(d.healthcare))
 .attr("r", "15")
 .attr("fill", "pink")
-.attr("opacity", ".65")
-.append("text");
-//.attr("dx", function(d){return -20})
-//.text(function(d){return d.abbr});
+.attr("opacity", ".65");
 
 
+circlesGroup.append("svg:text")
+            .attr("class","nodetext")
+            .attr("dx",12)
+            .attr("dy",".35em")
+            .text("fill", d=> d.abbr);
 
 // step 9: INitialize tool tip
 //=========================================================
